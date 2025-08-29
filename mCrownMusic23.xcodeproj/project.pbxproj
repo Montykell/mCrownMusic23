@@ -1,0 +1,543 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC3DFFBE2E5E9A38006E0B01 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = CC3DFFBD2E5E9A38006E0B01 /* GoogleSignIn */; };
+		CC3DFFC02E5E9A38006E0B01 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CC3DFFBF2E5E9A38006E0B01 /* GoogleSignInSwift */; };
+		CC4DC7762E60C94C003268CC /* GoogleMobileAdsPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4DC7732E60C94B003268CC /* GoogleMobileAdsPlaceholder.swift */; };
+		CC4DC7792E60C94C003268CC /* NanoPB-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CC4DC76F2E60C94B003268CC /* NanoPB-LICENSE */; };
+		CC4DC77A2E60C94C003268CC /* OpenMeasurement-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CC4DC7702E60C94B003268CC /* OpenMeasurement-LICENSE */; };
+		CCA4CB902E60EBFA00E8FEF0 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = CCA4CB8F2E60EBFA00E8FEF0 /* GoogleMobileAds */; };
+		CCE232EE2E4698D30044D964 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = CCE232ED2E4698D30044D964 /* FirebaseAI */; };
+		CCE232F02E4698D30044D964 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CCE232EF2E4698D30044D964 /* FirebaseAnalytics */; };
+		CCE232F22E4698D30044D964 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CCE232F12E4698D30044D964 /* FirebaseAuth */; };
+		CCE232F42E4698D30044D964 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CCE232F32E4698D30044D964 /* FirebaseDatabase */; };
+		CCE232F62E4698D30044D964 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CCE232F52E4698D30044D964 /* FirebaseFirestore */; };
+		CCE232F82E4698D30044D964 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CCE232F72E4698D30044D964 /* FirebaseStorage */; };
+		CCE233752E469F620044D964 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = CCE233742E469F620044D964 /* SwiftKeychainWrapper */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CC4DC76F2E60C94B003268CC /* NanoPB-LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = "NanoPB-LICENSE"; sourceTree = "<group>"; };
+		CC4DC7702E60C94B003268CC /* OpenMeasurement-LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = "OpenMeasurement-LICENSE"; sourceTree = "<group>"; };
+		CC4DC7722E60C94B003268CC /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:EQHXZ8M8AV:Google LLC"; lastKnownFileType = wrapper.xcframework; path = GoogleMobileAds.xcframework; sourceTree = "<group>"; };
+		CC4DC7732E60C94B003268CC /* GoogleMobileAdsPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMobileAdsPlaceholder.swift; sourceTree = "<group>"; };
+		CC4DC7742E60C94B003268CC /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:EQHXZ8M8AV:Google LLC"; lastKnownFileType = wrapper.xcframework; path = UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
+		CCE232DE2E4692D30044D964 /* mCrownMusic23.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mCrownMusic23.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CC89A6AF2E60FC0000FAC40B /* Exceptions for "mCrownMusic23" folder in "mCrownMusic23" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CCE232DD2E4692D30044D964 /* mCrownMusic23 */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CCE232E02E4692D30044D964 /* mCrownMusic23 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CC89A6AF2E60FC0000FAC40B /* Exceptions for "mCrownMusic23" folder in "mCrownMusic23" target */,
+			);
+			path = mCrownMusic23;
+			sourceTree = "<group>";
+		};
+		CCE232FE2E46995E0044D964 /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CCE232FF2E4699810044D964 /* ViewModels */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CCE233002E46998D0044D964 /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CCE233012E4699A00044D964 /* Other */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Other;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CCE232DB2E4692D30044D964 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC3DFFC02E5E9A38006E0B01 /* GoogleSignInSwift in Frameworks */,
+				CCE232F02E4698D30044D964 /* FirebaseAnalytics in Frameworks */,
+				CC3DFFBE2E5E9A38006E0B01 /* GoogleSignIn in Frameworks */,
+				CCE232F22E4698D30044D964 /* FirebaseAuth in Frameworks */,
+				CCE232F42E4698D30044D964 /* FirebaseDatabase in Frameworks */,
+				CCA4CB902E60EBFA00E8FEF0 /* GoogleMobileAds in Frameworks */,
+				CCE232F62E4698D30044D964 /* FirebaseFirestore in Frameworks */,
+				CCE232EE2E4698D30044D964 /* FirebaseAI in Frameworks */,
+				CCE232F82E4698D30044D964 /* FirebaseStorage in Frameworks */,
+				CCE233752E469F620044D964 /* SwiftKeychainWrapper in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC4DC7712E60C94B003268CC /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				CC4DC76F2E60C94B003268CC /* NanoPB-LICENSE */,
+				CC4DC7702E60C94B003268CC /* OpenMeasurement-LICENSE */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		CC4DC7752E60C94B003268CC /* GoogleMobileAdsSdkiOS-12.9.0 */ = {
+			isa = PBXGroup;
+			children = (
+				CC4DC7712E60C94B003268CC /* Licenses */,
+				CC4DC7722E60C94B003268CC /* GoogleMobileAds.xcframework */,
+				CC4DC7732E60C94B003268CC /* GoogleMobileAdsPlaceholder.swift */,
+				CC4DC7742E60C94B003268CC /* UserMessagingPlatform.xcframework */,
+			);
+			path = "GoogleMobileAdsSdkiOS-12.9.0";
+			sourceTree = "<group>";
+		};
+		CCE232D52E4692D30044D964 = {
+			isa = PBXGroup;
+			children = (
+				CCE233012E4699A00044D964 /* Other */,
+				CCE233002E46998D0044D964 /* Views */,
+				CCE232FF2E4699810044D964 /* ViewModels */,
+				CCE232FE2E46995E0044D964 /* Models */,
+				CCE232E02E4692D30044D964 /* mCrownMusic23 */,
+				CCE232DF2E4692D30044D964 /* Products */,
+				CC4DC7752E60C94B003268CC /* GoogleMobileAdsSdkiOS-12.9.0 */,
+			);
+			sourceTree = "<group>";
+		};
+		CCE232DF2E4692D30044D964 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CCE232DE2E4692D30044D964 /* mCrownMusic23.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CCE232DD2E4692D30044D964 /* mCrownMusic23 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCE232E92E4692DA0044D964 /* Build configuration list for PBXNativeTarget "mCrownMusic23" */;
+			buildPhases = (
+				CCE232DA2E4692D30044D964 /* Sources */,
+				CCE232DB2E4692D30044D964 /* Frameworks */,
+				CCE232DC2E4692D30044D964 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CCE232E02E4692D30044D964 /* mCrownMusic23 */,
+				CCE232FE2E46995E0044D964 /* Models */,
+				CCE232FF2E4699810044D964 /* ViewModels */,
+				CCE233002E46998D0044D964 /* Views */,
+				CCE233012E4699A00044D964 /* Other */,
+			);
+			name = mCrownMusic23;
+			packageProductDependencies = (
+				CCE232ED2E4698D30044D964 /* FirebaseAI */,
+				CCE232EF2E4698D30044D964 /* FirebaseAnalytics */,
+				CCE232F12E4698D30044D964 /* FirebaseAuth */,
+				CCE232F32E4698D30044D964 /* FirebaseDatabase */,
+				CCE232F52E4698D30044D964 /* FirebaseFirestore */,
+				CCE232F72E4698D30044D964 /* FirebaseStorage */,
+				CCE233742E469F620044D964 /* SwiftKeychainWrapper */,
+				CC3DFFBD2E5E9A38006E0B01 /* GoogleSignIn */,
+				CC3DFFBF2E5E9A38006E0B01 /* GoogleSignInSwift */,
+				CCA4CB8F2E60EBFA00E8FEF0 /* GoogleMobileAds */,
+			);
+			productName = mCrownMusic23;
+			productReference = CCE232DE2E4692D30044D964 /* mCrownMusic23.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CCE232D62E4692D30044D964 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					CCE232DD2E4692D30044D964 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+				};
+			};
+			buildConfigurationList = CCE232D92E4692D30044D964 /* Build configuration list for PBXProject "mCrownMusic23" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CCE232D52E4692D30044D964;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CCE232EC2E4698D30044D964 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CCE233732E469F620044D964 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				CC3DFFBC2E5E9A38006E0B01 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				CCA4CB8E2E60EBFA00E8FEF0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CCE232DF2E4692D30044D964 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CCE232DD2E4692D30044D964 /* mCrownMusic23 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CCE232DC2E4692D30044D964 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC4DC7792E60C94C003268CC /* NanoPB-LICENSE in Resources */,
+				CC4DC77A2E60C94C003268CC /* OpenMeasurement-LICENSE in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CCE232DA2E4692D30044D964 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC4DC7762E60C94C003268CC /* GoogleMobileAdsPlaceholder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CCE232E72E4692DA0044D964 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 226F6FR399;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CCE232E82E4692DA0044D964 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 226F6FR399;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CCE232EA2E4692DA0044D964 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 226F6FR399;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = mCrownMusic23/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = mCrownMusic;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = /Users/mcrownmusic/Downloads/4f652748caca4e50a276e0956b981db4.MOV;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					/usr/lib/swift,
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcrownmusic23;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CCE232EB2E4692DA0044D964 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 226F6FR399;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = mCrownMusic23/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = mCrownMusic;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = /Users/mcrownmusic/Downloads/4f652748caca4e50a276e0956b981db4.MOV;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					/usr/lib/swift,
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcrownmusic23;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CCE232D92E4692D30044D964 /* Build configuration list for PBXProject "mCrownMusic23" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCE232E72E4692DA0044D964 /* Debug */,
+				CCE232E82E4692DA0044D964 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCE232E92E4692DA0044D964 /* Build configuration list for PBXNativeTarget "mCrownMusic23" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCE232EA2E4692DA0044D964 /* Debug */,
+				CCE232EB2E4692DA0044D964 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CC3DFFBC2E5E9A38006E0B01 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		CCA4CB8E2E60EBFA00E8FEF0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.9.0;
+			};
+		};
+		CCE232EC2E4698D30044D964 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.1.0;
+			};
+		};
+		CCE233732E469F620044D964 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CC3DFFBD2E5E9A38006E0B01 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC3DFFBC2E5E9A38006E0B01 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		CC3DFFBF2E5E9A38006E0B01 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC3DFFBC2E5E9A38006E0B01 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+		CCA4CB8F2E60EBFA00E8FEF0 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCA4CB8E2E60EBFA00E8FEF0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		CCE232ED2E4698D30044D964 /* FirebaseAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCE232EC2E4698D30044D964 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAI;
+		};
+		CCE232EF2E4698D30044D964 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCE232EC2E4698D30044D964 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		CCE232F12E4698D30044D964 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCE232EC2E4698D30044D964 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		CCE232F32E4698D30044D964 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCE232EC2E4698D30044D964 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		CCE232F52E4698D30044D964 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCE232EC2E4698D30044D964 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		CCE232F72E4698D30044D964 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCE232EC2E4698D30044D964 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		CCE233742E469F620044D964 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCE233732E469F620044D964 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CCE232D62E4692D30044D964 /* Project object */;
+}
