@@ -11,6 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @State private var isShowingSignUp: Bool = false
     @State private var showLogoutConfirmation: Bool = false
+    @State private var isLoggingOut: Bool = false
 
     var body: some View {
         Group {
@@ -32,7 +33,17 @@ struct ContentView: View {
                 title: Text("Logout"),
                 message: Text("Are you sure you want to log out?"),
                 primaryButton: .destructive(Text("Logout")) {
-                    authViewModel.logout { _ in }
+                    Task {
+                        isLoggingOut = true
+                        let success = await authViewModel.logoutAsync()
+                        await MainActor.run {
+                            isLoggingOut = false
+                            if !success {
+                                // Optionally show an alert for failure
+                                print(authViewModel.errorMessage ?? "Logout failed")
+                            }
+                        }
+                    }
                 },
                 secondaryButton: .cancel()
             )
@@ -44,3 +55,4 @@ struct ContentView: View {
         }
     }
 }
+
