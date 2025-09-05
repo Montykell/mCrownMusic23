@@ -16,7 +16,7 @@ struct HomeView: View {
     @State private var navigateToSettings: Bool = false
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @StateObject var viewModel = HomeViewModel()
-
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -36,7 +36,7 @@ struct HomeView: View {
                         .opacity(0.1)
                         .zIndex(0)
                     
-                    VStack {
+                    VStack(spacing: 0) {
                         // Quick widget section
                         WidgetButtonsSection(showLogoutConfirmation: $showLogoutConfirmation)
                         
@@ -58,10 +58,13 @@ struct HomeView: View {
                             .padding(.bottom)
                         }
                         
-                        Spacer()
-                        
                         // MARK: - Status input bar
                         StatusPostBar(newStatusText: $newStatusText, onPost: postStatus)
+                        
+                        // MARK: - Banner Ad
+                        AdBannerView(adUnitID: "ca-app-pub-3940256099942544/2934735716")
+                            .frame(width: 320, height: 50)
+                            .padding(.vertical, 8)
                     }
                 }
             }
@@ -97,12 +100,9 @@ struct HomeView: View {
     }
     
     // MARK: - Actions
-    
     private func sanitizeInput(_ text: String) -> String {
         var sanitized = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        // Remove HTML/JS tags
         sanitized = sanitized.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
-        // Limit length
         sanitized = String(sanitized.prefix(500))
         return sanitized
     }
@@ -173,88 +173,97 @@ struct HomeView: View {
     }
     
     private func logout() {
-        authViewModel.logout { success in
-            if success { isShowingLoginView = true }
-        }
-    }
-}
-// MARK: - StatusPostBar
-struct StatusPostBar: View {
-    @Binding var newStatusText: String
-    let onPost: () -> Void
-    
-    var body: some View {
-        HStack {
-            TextField("Talk to Me!", text: $newStatusText)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
-                .background(Color(UIColor.systemBackground))
-                .cornerRadius(10)
-                .shadow(radius: 5)
-                .onChange(of: newStatusText) { newValue in
-                    if newValue.count > 500 {
-                        newStatusText = String(newValue.prefix(500))
-                    }
+        Task {
+            let success = await authViewModel.logoutAsync()
+            await MainActor.run {
+                if success {
+                    isShowingLoginView = true
+                } else {
+                    // Optionally show an error
+                    print(authViewModel.errorMessage ?? "Logout failed")
                 }
-            
-            Button(action: onPost) {
-                Text("Post")
-                    .bold()
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.brown)
-                    .cornerRadius(10)
             }
-            .disabled(newStatusText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         }
-        .padding()
-        .background(Color(UIColor.systemBackground))
-        .shadow(radius: 5)
-        .frame(maxWidth: .infinity)
     }
-}
-
-// MARK: - WidgetButtonsSection
-struct WidgetButtonsSection: View {
-    @Binding var showLogoutConfirmation: Bool
-
-    @State private var showLivestream = false
-    @State private var showVideoPlayer = false
-    @State private var showMusicPlayer = false
-    @State private var showPodcastPlayer = false
     
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 10) {
-                WidgetButton(title: "Music", color: .orange) {
-                    showMusicPlayer.toggle()
+    // MARK: - StatusPostBar
+    struct StatusPostBar: View {
+        @Binding var newStatusText: String
+        let onPost: () -> Void
+        
+        var body: some View {
+            HStack {
+                TextField("Talk to Me!", text: $newStatusText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
+                    .background(Color(UIColor.systemBackground))
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+                    .onChange(of: newStatusText) { newValue in
+                        if newValue.count > 500 {
+                            newStatusText = String(newValue.prefix(500))
+                        }
+                    }
+                
+                Button(action: onPost) {
+                    Text("Post")
+                        .bold()
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.brown)
+                        .cornerRadius(10)
                 }
-                .sheet(isPresented: $showMusicPlayer) {
-                    MusicPlayerView(viewModel: MusicPlayerViewModel(), showLogoutConfirmation: $showLogoutConfirmation)
-                }
-
-                WidgetButton(title: "Podcasts", color: .green) {
-                    showPodcastPlayer.toggle()
-                }
-                .sheet(isPresented: $showPodcastPlayer) {
-                    PodcastPlayerView(viewModel: PodcastPlayerViewModel(), showLogoutConfirmation: $showLogoutConfirmation)
-                }
-
-                WidgetButton(title: "Livestream", color: .purple) {
-                    showLivestream.toggle()
-                }
-                .sheet(isPresented: $showLivestream) {
-                    LivestreamPlayerView(livestreamEvent: sampleLivestreamEvent)
-                }
-
-                WidgetButton(title: "Music Videos", color: .blue) {
-                    showVideoPlayer.toggle()
-                }
-                .sheet(isPresented: $showVideoPlayer) {
-                    MusicVideosComingSoonView()
-                }
+                .disabled(newStatusText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
             .padding()
+            .background(Color(UIColor.systemBackground))
+            .shadow(radius: 5)
+            .frame(maxWidth: .infinity)
+        }
+    }
+    
+    // MARK: - WidgetButtonsSection
+    struct WidgetButtonsSection: View {
+        @Binding var showLogoutConfirmation: Bool
+        
+        @State private var showLivestream = false
+        @State private var showVideoPlayer = false
+        @State private var showMusicPlayer = false
+        @State private var showPodcastPlayer = false
+        
+        var body: some View {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    WidgetButton(title: "Music", color: .orange) {
+                        showMusicPlayer.toggle()
+                    }
+                    .sheet(isPresented: $showMusicPlayer) {
+                        MusicPlayerView(viewModel: MusicPlayerViewModel(), showLogoutConfirmation: $showLogoutConfirmation)
+                    }
+                    
+                    WidgetButton(title: "Podcasts", color: .green) {
+                        showPodcastPlayer.toggle()
+                    }
+                    .sheet(isPresented: $showPodcastPlayer) {
+                        PodcastPlayerView(viewModel: PodcastPlayerViewModel(), showLogoutConfirmation: $showLogoutConfirmation)
+                    }
+                    
+                    WidgetButton(title: "Livestream", color: .purple) {
+                        showLivestream.toggle()
+                    }
+                    .sheet(isPresented: $showLivestream) {
+                        LivestreamPlayerView(livestreamEvent: sampleLivestreamEvent)
+                    }
+                    
+                    WidgetButton(title: "Music Videos", color: .blue) {
+                        showVideoPlayer.toggle()
+                    }
+                    .sheet(isPresented: $showVideoPlayer) {
+                        MusicVideosComingSoonView()
+                    }
+                }
+                .padding()
+            }
         }
     }
 }
