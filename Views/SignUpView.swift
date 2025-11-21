@@ -111,16 +111,31 @@ struct SignUpView: View {
                     Text("Please enter your first and last name")
                         .foregroundColor(.red)
                         .font(.caption)
-                        .padding()
+                        .padding(.horizontal, 4)
                 }
                 
-                CustomTextField("Username", text: $viewModel.username, height: 40)
-                    .focused($focusedField, equals: .username)
-                if !SignUpViewModel.isValidUsername(viewModel.username) && !viewModel.username.isEmpty {
-                    Text("Username must be 3-20 chars, no spaces or unsafe symbols")
-                        .foregroundColor(.red)
-                        .font(.caption)
-                        .padding()
+                VStack(alignment: .leading, spacing: 6) {
+                    CustomTextField("Username", text: $viewModel.username, height: 40)
+                        .focused($focusedField, equals: .username)
+                    
+                    HStack(spacing: 8) {
+                        if viewModel.username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                            Text("") // no helper text when empty
+                        } else if !SignUpViewModel.isValidUsername(viewModel.username) {
+                            Text("Username must be 3-20 chars, allowed: letters, numbers, ., _, -")
+                                .foregroundColor(.red)
+                                .font(.caption)
+                        } else if viewModel.isCheckingUsername {
+                            Text("Checking username...")
+                                .font(.caption)
+                                .foregroundColor(.white.opacity(0.8))
+                        } else {
+                            Text(viewModel.isUsernameAvailable ? "Username available" : "Username taken")
+                                .font(.caption)
+                                .foregroundColor(viewModel.isUsernameAvailable ? .green : .red)
+                        }
+                        Spacer()
+                    }
                 }
                 
                 CustomTextField("Email", text: $viewModel.email, keyboardType: .emailAddress, height: 40)
@@ -129,7 +144,7 @@ struct SignUpView: View {
                     Text("Please enter a valid email address")
                         .foregroundColor(.red)
                         .font(.caption)
-                        .padding()
+                        .padding(.horizontal, 4)
                 }
                 
                 SecureInputField(placeholder: "Password", text: $viewModel.password, height: 40)
@@ -163,7 +178,24 @@ struct SignUpView: View {
                         .padding(.leading, 4)
                 }
                 
-                // ✅ Profile image picker
+                // NEW: Phone number field
+                VStack(alignment: .leading, spacing: 6) {
+                    CustomTextField("Phone Number", text: $viewModel.phoneNumber, keyboardType: .phonePad, height: 40)
+                        .focused($focusedField, equals: .phoneNumber)
+                    
+                    let digits = viewModel.phoneNumber.filter { "0"..."9" ~= $0 }
+                    if !viewModel.phoneNumber.isEmpty && digits.count != 10 {
+                        Text("Enter a valid 10-digit US phone number")
+                            .foregroundColor(.red)
+                            .font(.caption)
+                    } else if digits.count == 10 {
+                        Text("Phone number looks good")
+                            .foregroundColor(.green)
+                            .font(.caption)
+                    }
+                }
+                
+                // ✅ Profile image picker (kept as-is)
                 profileImageSection
             }
             .padding()
@@ -172,9 +204,15 @@ struct SignUpView: View {
             .cornerRadius(18)
             .shadow(radius: 8)
             
+            // Error vs status message
             if let errorMessage = viewModel.errorMessage {
                 Text(errorMessage)
                     .foregroundColor(.red)
+                    .font(.footnote)
+            }
+            if let statusMessage = viewModel.statusMessage {
+                Text(statusMessage)
+                    .foregroundColor(.green)
                     .font(.footnote)
             }
             
@@ -182,7 +220,7 @@ struct SignUpView: View {
                 hideKeyboard()
                 isLoading = true
                 
-                // ✅ Validate phone number before signup
+                // View-level phone check (redundant because isValid contains it, but keep for safety)
                 guard viewModel.phoneNumber.filter({ "0"..."9" ~= $0 }).count == 10 else {
                     viewModel.errorMessage = "Enter a valid 10-digit US phone number"
                     isLoading = false
@@ -190,9 +228,11 @@ struct SignUpView: View {
                 }
                 
                 viewModel.signUp { success in
-                    isLoading = false
-                    if success {
-                        showVerifyEmailView = true // Show VerifyEmailView after signup
+                    DispatchQueue.main.async {
+                        isLoading = false
+                        if success {
+                            showVerifyEmailView = true
+                        }
                     }
                 }
             } label: {
