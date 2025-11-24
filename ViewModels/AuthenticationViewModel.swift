@@ -17,11 +17,19 @@ class AuthenticationViewModel: NSObject, ObservableObject {
     // MARK: - Published Properties
     @Published var email: String = ""
     @Published var password: String = ""
+    @Published var confirmPassword: String = "" // Added back (signup requirement)
     @Published var errorMessage: String?
     @Published var isLoggedIn: Bool = false
     @Published var shouldResetNavigation: Bool = false
     @Published var currentUser: FirebaseAuth.User?
     @Published var shouldSaveLoginInfo: Bool = false
+    
+    // MARK: - Global Logout Trigger
+    @Published var showLogoutConfirmation: Bool = false
+    
+    func triggerLogout() {
+        showLogoutConfirmation = true
+    }
     
     // Internal
     private var authStateHandle: AuthStateDidChangeListenerHandle?
@@ -43,13 +51,51 @@ class AuthenticationViewModel: NSObject, ObservableObject {
         authStateHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             Task { @MainActor in
                 self?.currentUser = user
-                self?.isLoggedIn = (user != nil)   // ✅ Correct check
+                self?.isLoggedIn = (user != nil)
                 self?.shouldResetNavigation = (user == nil)
             }
         }
     }
-
     
+    // MARK: - Signup
+    func signupAsync() async -> Bool {
+        guard !email.isEmpty else {
+            errorMessage = "Email cannot be empty."
+            return false
+        }
+        guard !password.isEmpty else {
+            errorMessage = "Password cannot be empty."
+            return false
+        }
+        guard password == confirmPassword else {
+            errorMessage = "Passwords do not match."
+            return false
+        }
+        
+        do {
+            let result = try await Auth.auth().createUser(withEmail: email, password: password)
+            let user = result.user
+            
+            // Create Firestore user document
+            let userDoc = Firestore.firestore().collection("users").document(user.uid)
+            try await userDoc.setData([
+                "email": email,
+                "createdAt": Timestamp(date: Date()),
+                "isDeactivated": false
+            ])
+            
+            currentUser = user
+            isLoggedIn = true
+            shouldResetNavigation = false
+            errorMessage = nil
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
+    }
+    
+    // MARK: - Login
     func loginAsync() async -> Bool {
         guard !email.isEmpty else {
             errorMessage = "Email cannot be empty."
@@ -59,11 +105,11 @@ class AuthenticationViewModel: NSObject, ObservableObject {
             errorMessage = "Password cannot be empty."
             return false
         }
-
+        
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             let user = result.user
-
+            
             // Check Firestore if account is deactivated
             let userDoc = Firestore.firestore().collection("users").document(user.uid)
             let snapshot = try await userDoc.getDocument()
@@ -72,23 +118,22 @@ class AuthenticationViewModel: NSObject, ObservableObject {
                 try Auth.auth().signOut()
                 return false
             }
-
+            
             currentUser = user
             isLoggedIn = true
             shouldResetNavigation = false
             errorMessage = nil
-
+            
             if shouldSaveLoginInfo {
                 saveCredentialsToKeychain(email: email, password: password)
             }
-
+            
             return true
         } catch {
             errorMessage = error.localizedDescription
             return false
         }
     }
-
     
     // MARK: - Logout
     func logoutAsync() async -> Bool {
@@ -110,18 +155,16 @@ class AuthenticationViewModel: NSObject, ObservableObject {
             errorMessage = "No user signed in."
             return false
         }
-
+        
         do {
-            // 1️⃣ Update Firestore user document
             let userDoc = Firestore.firestore().collection("users").document(user.uid)
             try await userDoc.updateData(["isDeactivated": true])
-
-            // 2️⃣ Log out
+            
             try Auth.auth().signOut()
             currentUser = nil
             isLoggedIn = false
             shouldResetNavigation = true
-
+            
             print("🔥 Account deactivated successfully")
             return true
         } catch {
@@ -130,14 +173,14 @@ class AuthenticationViewModel: NSObject, ObservableObject {
             return false
         }
     }
-
-    // MARK: - Delete Account (Optional)
+    
+    // MARK: - Delete Account
     func deleteAccountAsync() async -> Bool {
         guard let user = Auth.auth().currentUser else {
             errorMessage = "No user signed in."
             return false
         }
-
+        
         do {
             try await user.delete()
             currentUser = nil
@@ -161,10 +204,9 @@ class AuthenticationViewModel: NSObject, ObservableObject {
             shouldResetNavigation = false
             errorMessage = nil
             
-            // Reactivate in Firestore
             let db = FirebaseFirestore.Firestore.firestore()
             try await db.collection("users").document(authResult.user.uid)
-                .setData(["deactivated": false], merge: true)
+                .setData(["isDeactivated": false], merge: true)
             
             print("✅ Account reactivated client-side")
             return true
@@ -217,7 +259,9 @@ class AuthenticationViewModel: NSObject, ObservableObject {
     
     func fetchCredentialsFromKeychain() -> (String, String)? {
         guard let email = KeychainWrapper.standard.string(forKey: "userEmail"),
-              let password = KeychainWrapper.standard.string(forKey: "userPassword") else { return nil }
+              let password = KeychainWrapper.standard.string(forKey: "userPassword") else {
+            return nil
+        }
         return (email, password)
     }
     
@@ -227,11 +271,8 @@ class AuthenticationViewModel: NSObject, ObservableObject {
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
     }
     
-    private func isValidPassword(_ password: String) -> Bool {
-        guard password.count >= 8 else { return false }
-        let patterns = ["[A-Z]+", "[a-z]+", "[0-9]+", "[!@#$%^&*(),.?\":{}|<>]+"]
-        return patterns.allSatisfy {
-            NSPredicate(format: "SELF MATCHES %@", $0).evaluate(with: password)
-        }
+    private func isValidPassword(_ password: String) -> Bool { guard password.count >= 8 else { return false }; let patterns = ["[A-Z]+", "[a-z]+", 
+      "[0-9]+", "[!@#$%^&*(),.?\":{}|<>]+"]; return patterns.allSatisfy { NSPredicate(format: "SELF MATCHES %@", $0).evaluate(with: password)}
     }
 }
+
